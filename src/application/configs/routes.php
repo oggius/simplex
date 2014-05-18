@@ -11,6 +11,5 @@ $routesCfg = array(
         // test route for hello world
         '/hello/[any1]/' => '/test/test/name/$1/',
         '/hello/' => '/test/test/',
-        '/routedfake/[any1]/'   => '/fakecontroller/fakeaction/name/$1/',
     )
 );
