@@ -9,6 +9,7 @@
 $templateengineCfg['engine'] = 'Smarty';
 
 $templateengineCfg['smarty'] = array(
+    'cache'     => false,
     'cache_dir' => 'cache/smarty/cache/',
     'compiled_dir'  => 'cache/smarty/compiled/',
     'templates_dir' => 'application/views/',

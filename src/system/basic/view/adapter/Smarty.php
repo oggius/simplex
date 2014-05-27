@@ -34,13 +34,14 @@ class Smarty extends TemplateEngineAdapter {
             if (isset($cfg['plugins_dir'])) {
                 $smarty->addPluginsDir(ROOT . $cfg['plugins_dir']);
             }
+
+            $smarty->caching = isset($cfg['cache']) ? (bool)$cfg['cache'] : false;
         } else {
             $smarty->setTemplateDir(APP_PATH . 'views');
             $this->prepareTemplateCacheDirectory(ROOT . 'cache' . DS . 'smarty' . DS . 'cache' . DS);
             $smarty->setCacheDir(ROOT . 'cache' . DS . 'smarty' . DS . 'cache' . DS);
             $smarty->setCompileDir(ROOT . 'cache' . DS . 'smarty' . DS . 'compiled' . DS);
         }
-        //$smarty->caching = 1;
         $this->_engine = $smarty;
     }
 
