@@ -93,7 +93,7 @@ class Router
         }
         */
         // perform mapping basing on routes
-        $routedString = $this->map($queryString);
+        $routedString = $this->map($queryString, null, $this->_routingConfig['ignoreRoutes']);
         // split the url into segments
         $segments = explode('/', trim($routedString, '/'));
 
@@ -134,11 +134,20 @@ class Router
      * maps query string to the corresponding route if any
      * @param $queryString
      * @param $routes
+     * @param array $ignoreRoutes
      * @return string
      */
-    public function map($queryString, $routes = null)
+    public function map($queryString, $routes = null, $ignoreRoutes = null)
     {
         $routedString = $queryString;
+        // check if we do not match any of the ignore routes
+        if (is_array($ignoreRoutes) && count($ignoreRoutes) > 0) {
+            foreach ($ignoreRoutes as $routeToBeIgnored) {
+                if (stripos($queryString, $routeToBeIgnored) === 0) {
+                    return $routedString;
+                }
+            }
+        }
         // check for external routes
         if (empty($routes)) {
             $routes = $this->_routingConfig['routes'];
